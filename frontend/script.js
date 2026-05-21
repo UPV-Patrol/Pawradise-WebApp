@@ -22,7 +22,7 @@
                     const card = document.createElement('div');
                     card.className = 'animal-card';
                     card.innerHTML = `
-                        <img src="${pfp}" alt="${name}">
+                        <img src="${pfp}" alt="${name}"> 
                         <h2>${name} (${nickname})</h2>
                         <p>${type}</p>
                         <p>Usually seen at: ${seen}</p>
