@@ -24,10 +24,10 @@ DROP TABLE IF EXISTS `user`;
 -- Table structure for table user
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(50) NOT NULL CHECK(`email` REGEXP '^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$'), -- must be valid format
+  `email` varchar(50) NOT NULL CHECK(`email` REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'), -- must be valid format
   `role` enum('user','admin') NOT NULL DEFAULT 'user',
   `username` varchar(50) NOT NULL CHECK(char_length(`username`) >=2),
-  `password` varchar(100) NOT NULL CHECK(char_length(`password`)>=60), -- since bcrypt only return 60 char
+  `password` varchar(255) NOT NULL CHECK(char_length(`password`)>=60), -- since bcrypt only return 60 char
   `status` enum('active','banned') NOT NULL DEFAULT 'active',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `uk_email` (`email`),
