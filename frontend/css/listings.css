@@ -1,0 +1,237 @@
+/* separate css file for listings */
+
+.listings-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.listings-container h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 40px;
+    color: #333;
+}
+
+/* grid layout for cards */
+.animals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 0;
+}
+
+/* animal card styling */
+.animal-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.animal-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* card image */
+.card-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: #cb6d8a;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.animal-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+/* card content */
+.card-content {
+    padding: 12px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    margin-bottom: 8px;
+}
+
+.card-name {
+    font-size: 19.2px;
+    font-weight: 700;
+    color: #cb6d8a;
+    margin: 0;
+    line-height: 1;
+}
+
+/* basic info grid */
+.basic-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 8px 0;
+    padding: 8px 0;
+    border-top: 1px solid #b1aeaf;
+    border-bottom: 1px solid #b1aeaf;
+}
+
+.info-item {
+    font-size: 12px;
+}
+
+.info-label {
+    display: block;
+    font-weight: 600;
+    color: black;
+    margin-bottom: 2px;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+}
+
+.info-value {
+    display: block;
+    color: #cb6d8a;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+/* location info */
+.card-location {
+    font-size: 12px;
+    color: #cb6d8a;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 6px 0;
+}
+
+.card-location::before {
+    content: "📍";
+}
+
+/* traits */
+.traits-preview {
+    font-size: 12px;
+    color: #cb6d8a;
+    line-height: 1.3;
+    margin: 6px 0;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;  /* show only 2 lines max */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.traits-preview strong {
+    display: block;
+    margin-bottom: 2px;
+    color: black;
+}
+
+.traits-preview p {
+    margin: 2;
+}
+
+/* view profile button */
+.view-profile-btn {
+    background: black; /* linear-gradient(135deg, #667eea 0%, #764ba2 100%) */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    text-align: center;
+    text-decoration: none;
+}
+
+.view-profile-btn:hover {
+    background: #eb8caa;    /* linear-gradient(135deg, #764ba2 0%, #667eea 100%) */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(216, 117, 195, 0.4);    /* rgba(234, 102, 197, 0.4) */
+}
+
+.view-profile-btn:active {
+    transform: translateY(0);
+}
+
+/* responsive design */
+/* for tables / smaller screen */
+@media (max-width: 768px) {
+    .listings-container {
+        padding: 30px 16px;
+    }
+
+    .listings-container h1 {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+
+    .animals-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .card-image {
+        height: 220px;
+    }
+
+    .card-content {
+        padding: 16px;
+    }
+}
+
+/* for mobile phones */
+@media (max-width: 480px) {
+    .listings-container {
+        padding: 20px 12px;
+    }
+
+    .listings-container h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .animals-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .card-image {
+        height: 200px;
+    }
+
+    .basic-info {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}
+
+/* for when theres an error and cant load data */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #7f8c8d;
+}
+
+.empty-state p {
+    font-size: 17px;
+    margin: 0;
+}
