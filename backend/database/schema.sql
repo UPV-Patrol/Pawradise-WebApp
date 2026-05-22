@@ -21,7 +21,7 @@ DROP TABLE IF EXISTS `user`;
 
 -- --------------------------------------------------------
 
--- Table structure for table `user`
+-- Table structure for table user
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(50) NOT NULL CHECK(`email` REGEXP '^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$'), -- must be valid format
@@ -35,7 +35,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- Table structure for table `favorite`
+-- Table structure for favorite 
 CREATE TABLE `favorite` (
   `fav_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE `favorite` (
 
 
 
--- Table structure for table `sponsorship`
+-- Table structure for sposorship
 CREATE TABLE `sponsorship` (
   `sponsor_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
