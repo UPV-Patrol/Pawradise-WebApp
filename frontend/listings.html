@@ -3,8 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="css/style.css">    
+        
+        <title>PAWradise Animal Listings</title>
+        <link rel="stylesheet" href="css/style.css">  
+        <link rel="stylesheet" href="css/listings.css">  
     </head>
     <style>
         img:not(#logo) {
@@ -15,9 +17,13 @@
     <body>
         <div id="navbar"></div>
 
-        <div id="animal-container">Loading animals...</div>
-     
+        <div class="listings-container">
+            <!-- filters -->
+            <div id="animal-container" class="animals-grid">Loading animals...</div>
+        </div>
+        
+        <div id="footer"></div>
         <script src="js/navbar.js"></script>
-        <script src="script.js"></script>
+        <script src="js/listings.js"></script>
     </body>
 </html>
