@@ -18,6 +18,7 @@ router.get('/auth-status', auth, (req, res) => {
     res.json({ isLoggedIn: true, user: req.user });
 });
 
+
 router.post('/logout', (req, res) => {
     req.session.destroy(() => {
         res.json({ message: 'Logged out' });
