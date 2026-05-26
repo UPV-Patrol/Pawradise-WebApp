@@ -173,13 +173,14 @@ input {
     font-size: 14px;
     color: #555;
     transform: translateY(-85%);
-    user-select: none; /*so we cant highlight the toggle*/
+    user-select: none; 
 }
 
 
 .toggle-password:hover {
     color: #cb6d8a; 
 }
+
 
 button {
     width: 100%;

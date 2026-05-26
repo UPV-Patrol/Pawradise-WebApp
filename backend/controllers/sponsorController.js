@@ -1,49 +1,70 @@
 //DESCRIPTION: handles all logic in sponsorship
 
-const db = require('../src/config/db');
+//IMPORTS
+const db = require('../src/config/db'); //connect db
+//import third-party mod
+const bcrypt = require('bcrypt'); //for hashing pw
+const validator = require('validator');
 
-exports.submitSponsorship = async (req, res) => {
+const num_of_hashing = 10; 
+
+exports.createSponsorship = async (req, res) => {
     try {
-        const { 
-            sponsorType, 
-            entityName, 
-            contactNumber, 
-            fbLink1, 
-            fbLink2, 
-            targetPet, 
-            sponsorshipMonth, 
-            amount 
-        } = req.body;
-        //
+        // console.log("create sponsors is working aaaaaaa"); //test
+
+        const { sponsorType, targetPet, sponsorshipMonth, amount } = req.body;
+        //requre the proof of payment
         if (!req.file) {
             return res.status(400).json({ message: "Proof of payment is required." });
         }
         const proof_img = req.file.filename;
 
-        //put all pets selected in one string
-        let collecPets = ""; 
-        if (Array.isArray(targetPet)) {
-            collecPets = targetPet.join(', '); 
-        } else {
-            collecPets = targetPet || ""; 
-        }
+        //handle the case where list of animals are chosen since sql cannot handle arrays thus the need for flattening
+        const collectedPets = Array.isArray(targetPet) ? targetPet.join(', ') : targetPet || "";
 
+        //obj dictionary for mapping
+        const sponsorFieldMap = {
+            individual: {
+                entityName: null,
+                contactNumber: req.body.ind_contactNumber || '',
+                fbLink1: req.body.ind_fbLink || null,
+                fbLink2: null
+            },
+            group: {
+                entityName: req.body.grp_entityName || null,
+                contactNumber: req.body.grp_contactNumber || '',
+                fbLink1: req.body.grp_fbLink1 || null,
+                fbLink2: req.body.grp_fbLink2 || null
+            },
+            business: {
+                entityName: req.body.biz_entityName || null,
+                contactNumber: req.body.biz_contactNumber || '',
+                fbLink1: req.body.biz_fbLink1 || null,
+                fbLink2: req.body.biz_fbLink2 || null
+            }
+        };
 
+        //map using dict depending on sponsor type 
+        // note: made it more strict using def indiv as fallback
+        const matchedLayout = sponsorFieldMap[sponsorType] || sponsorFieldMap.individual;
+        const {entityName, contactNumber, fbLink1, fbLink2} = matchedLayout;
+
+        
         const sql = `
             INSERT INTO sponsorship (
-                user_id, sponsor_type, entity_name, 
-                contact_number, fb_link_1, fb_link_2, 
+                user_id, sponsor_type, entity_name,
+                contact_number, fb_link_1, fb_link_2,
                 target_pets, sponsorship_month, amount, proof_img
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
         await db.query(sql, [
-            req.session.userId,              
+            req.session.userId,
             sponsorType,
-            entityName || null,              
+            entityName,
             contactNumber,
-            fbLink1 || null,
-            fbLink2 || null,
-            collecPets,                   
+            fbLink1,
+            fbLink2,
+            collectedPets,
             sponsorshipMonth,
             amount,
             proof_img
