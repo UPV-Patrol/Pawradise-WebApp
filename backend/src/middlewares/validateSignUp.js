@@ -12,7 +12,7 @@ exports.validateSignup = async (req, res, next) => {
     }
 
     //  --- VERIFY EMAIL ---
-    req.body.email = validator.normalizeEmail(email); //clean email by removing spaces and turning to lowercase
+    req.body.email = validator.normalizeEmail(email, { gmail_remove_dots: false }); //clean email by removing spaces and turning to lowercase
     const cleanEmail = req.body.email;
 
     if (!validator.isEmail(cleanEmail)) {
