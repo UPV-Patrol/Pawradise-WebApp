@@ -1,35 +1,41 @@
-//DESCRIPTION: handles the files like images since normal parsing makes all the fields invalid or smth sabi ni google
+//DESCRIPTION: for handling file uploads
+//NOTE: since in forms when files are sent it's encoded in multipart/form-data and normal parsing makes whole body blank
 
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 
-//Define storage of files and what to name them
+//config storage loc
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        // store in uploads folder
-        cb(null, path.join(__dirname, '../uploads')); 
+        const uploadPath = path.join(__dirname, '../../uploads/sponsorship'); 
+        // create if folder doesnt exist
+        if (!fs.existsSync(uploadPath)) {
+            fs.mkdirSync(uploadPath, { recursive: true });
+        }
+        
+        cb(null, uploadPath); 
     },
-    filename: (req, file, cb) =>{
-        //format: 'image - timestamp' (avoid duplicates)
+    filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, file.fieldname + '-'+ uniqueSuffix +path.extname(file.originalname));
+        cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
     }
 });
 
-// allow only the ff formats: png, jpg, jpeg
+//handles the image type
 const fileFilter = (req, file, cb) => {
     if (file.mimetype.startsWith('image/')) {
-        cb(null, true); // get file
+        cb(null, true);
     } else {
-        cb(new Error('Invalid file format. Please only upload image'), false); 
+        cb(new Error('Invalid file format. Please only upload image inputs'), false); 
     }
 };
 
-// limit: 5MB
+//assign the storage and the file type and file size configs
 const upload = multer({ 
     storage: storage,
     fileFilter: fileFilter,
-    limits: { fileSize:5*1024* 1024 } 
+    limits: { fileSize: 5 * 1024 * 1024 } 
 });
 
 module.exports = upload;

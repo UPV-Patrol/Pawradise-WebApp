@@ -14,10 +14,10 @@
         <p>Login to your account</p>
 
         <form action="/api/user/login" method= "POST">
-            <label>Email</label>
-            <input type="email" name= "email" placeholder="Enter your email" required>
+            <label for="email">Email</label>
+            <input type="email" name= "email" id="email" placeholder="Enter your email" autocomplete="email" required>
 
-            <label>Password</label>
+            <label for="password">Password</label>
             <div class="password-box">
                 <input type="password" name="password" id="password" placeholder="Enter password" required>
                 <span class="toggle-password" onclick="togglePassword()">Show</span>
@@ -30,6 +30,7 @@
             Don’t have an account? <a href="signup.html">Sign Up</a>
         </div>
     </div>
+    <div id="footer"></div>
     <script src="js/navbar.js"></script>
     <script src="js/pass-toggle.js"></script>
 </body>

@@ -35,19 +35,18 @@ exports.signup = async (req, res) => {
 //LOGIN
 exports.login = async (req, res) => {
 
-
     let { email, password } = req.body;
 
     if(!email || !password) {
         return res.status(400).json({ message: "Please fill all fields" });
     }
     try {
-        email= validator.normalizeEmail(email);    // lowercase and remove unnecessary space
+        email = validator.normalizeEmail(email, { gmail_remove_dots: false });   // lowercase and remove unnecessary space
 
         if (!validator.isEmail(email)) {
             return res.status(400).json({ message: "Invalid email. Enter a valid email address" });
         }
-        //check if email was saved
+        //check if email was saved 
         const [existing] = await db.query(
             'SELECT * FROM user WHERE email = ?', [email]
         );
@@ -61,6 +60,9 @@ exports.login = async (req, res) => {
 
         //if email was found
         const user = existing[0]; 
+
+        console.log("Plaintext typed password:", password);
+        console.log("Hashed password found in DB row:", user.password);
 
         //check if pw match from registered one 
         const isMatch = await bcrypt.compare(password, user.password); 

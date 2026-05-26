@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">    
+    <link rel="stylesheet" href="css/sponsor.css">
 
-    <style>
+    <!-- <style>
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-    </style>
+    </style> -->
 </head>
 <body>
     <div id="navbar"></div>
     <!-- TODO: make this not external then modify nlng -->
-    <div id="loading-screen" style="
-        position: fixed;
+    <div id="loading-screen" > 
+        <!-- position: fixed;
         top: 0;
         left: 0;
         width: 100%;
@@ -28,8 +29,11 @@
         align-items: center;
         z-index: 100;
         transition: opacity 0.3s ease;
-    ">
-        <div style="
+    "> --> 
+
+        <div class = "loading-spinner"></div>
+    </div>
+        <!-- <div style="
             width: 50px;
             height: 50px;
             border: 5px solid #f3f3f3;
@@ -37,12 +41,14 @@
             border-radius: 50%;
             
             animation: spin 1s linear infinite;
-        "></div>
-    </div>
+        "></div> -->
+
     <!-- TODO: make this not inline din -->
-    <div class="form-container" id="main-content" style="opacity: 0; transition: opacity 0.5s ease;">
+    <div class="form-container" id="main-content">
         <div class="sponsorCard">
-            <form id="sponsorForm">
+            <form id="sponsorForm" action="/api/sponsor/createSponsorship" method="POST" enctype="multipart/form-data">
+
+                <!-- STEP 1 -->
                 <div class="step active">
                     <h2>Data Privacy Act</h2>
                     <p> By signifying your consent here and by submitting this form, you are allowing  Project PAWradise  to use, access, and store the information provided for communication and record-keeping purposes. </p>
@@ -53,62 +59,63 @@
                     </label>
                 </div>
 
+                <!-- STEP 2 -->  
                 <div class="step">
-                    <h2>III. What Kind of sPAWnsor Will You Be? 🐾</h2>
+                    <h2>III. What Kind of sPAWnsor Will You Be? 🐾</h2>x
                     <p>Sponsoring as?</p>
-                    <button type="button" name="sponsorType" value="individual">Individual</button>
-                    <button type="button" name="sponsorType" value="group">Group/Organization</button>
-                    <button type="button" name="sponsorType" value="business">Business/Establishment</button>
-                </div>
+                    <input type = "hidden" name="sponsorType" id = "sponsor-type-input">
+                    <div class ="sponsor-options">
+                        <button type="button" class="sponsor-option" data-type="individual">Individual</button>
+                        <button type="button" class="sponsor-option" data-type="group">Group/Organization</button>
+                        <button type="button" class="sponsor-option" data-type="business">Business/Establishment</button>
+                    </div>
+                  </div>
 
-                <div class="step">
-                    <h2>Personal Details</h2>
-                    <label for="fb-link">Facebook Link</label>
-                    <input type="text" id="fb-link" name="fbLink1">
-                    <br>
+                <!-- STEP 3 -->
+                <div class="step" id="step-details">
 
-                    <label for="contact">Contact Number</label>
-                    <input type="text" id="contact" name="contactNumber">
-                </div>
+                    <!-- individual fields -->
+                    <div id="fields-individual" class="hidden-section">
+                        <h2>Personal Details</h2>
+                        <label for="fb-link">Facebook Link</label>
+                        <input type="text" id="fb-link" name="ind_fbLink">        
+                        <label for="contact">Contact Number</label>
+                        <input type="text" id="contact" name="ind_contactNumber"> 
+                    </div>
 
-                <div class="step">
-                    <h2>Group Sponsorship or Organization</h2>
-                    <label for="org-name">Name of Organization/Group</label>
-                    <input type="text" id="org-name" name="entityName">
-                    <br>
+                    <!-- group fields -->
+                    <div id="fields-group" class="hidden-section">
+                        <h2>Group / Organization Details</h2>
+                        <label for="org-name">Name of Organization/Group</label>
+                        <input type="text" id="org-name" name="grp_entityName">        
 
-                    <label for="fb-link-group-rep">Facebook Link of Representative</label>
-                    <input type="text" id="fb-link-group-rep" name="fbLink1">
-                    <br>
+                        <label for="fb-link-group-rep">Facebook Link of Representative</label>
+                        <input type="text" id="fb-link-group-rep" name="grp_fbLink1">   
 
-                    <label for="fb-link-group-page">Facebook Link of Organization Page</label>
-                    <input type="text" id="fb-link-group-page" name="fbLink2">
-                    <br>
+                        <label for="fb-link-group-page">Facebook Link of Organization Page</label>
+                        <input type="text" id="fb-link-group-page" name="grp_fbLink2"> 
+                        <label for="contact-group">Contact Number</label>
+                        <input type="text" id="contact-group" name="grp_contactNumber"> 
+                    </div>
 
-                    <label for="contact-group">Contact Number</label> 
-                    <input type="text" id="contact-group" name="contactNumber">
-                </div>
+                    <!-- business fields -->
+                    <div id="fields-business" class="hidden-section">
+                        <h2>Establishment / Business Details</h2>
+                        <label for="owner-name">Name of Owner</label>
+                        <input type="text" id="owner-name" name="biz_ownerName">      
 
-                <div class="step">
-                    <h2>Establishment / Business</h2>
-                    <label for="owner-name">Name of Owner</label>
-                    <input type="text" id="owner-name" name="entityName">
-                    <br>
+                        <label for="biz-name">Name of Business</label>
+                        <input type="text" id="biz-name" name="biz_entityName">        
 
-                    <label for="biz-name">Name of Business / Establishment</label>
-                    <input type="text" id="biz-name" name="entityName">
-                    <br>
+                        <label for="fb-link-biz-owner">Facebook Link of Owner</label>
+                        <input type="text" id="fb-link-biz-owner" name="biz_fbLink1">  
 
-                    <label for="fb-link-biz-owner">Facebook Link of Owner</label>
-                    <input type="text" id="fb-link-biz-owner" name="fbLink1">
-                    <br>
+                        <label for="fb-link-biz-page">Facebook Link of Page</label>
+                        <input type="text" id="fb-link-biz-page" name="biz_fbLink2">   
 
-                    <label for="fb-link-biz-page">Facebook Link of Page</label>
-                    <input type="text" id="fb-link-biz-page" name="fbLink2">
-                    <br>
-
-                    <label for="contact-biz">Contact Number of Owner</label>
-                    <input type="text" id="contact-biz" name="contactNumber">
+                        <label for="contact-biz">Contact Number</label>
+                        <input type="text" id="contact-biz" name="biz_contactNumber">  
+                    </div>
                 </div>
 
                 <div class="step">
@@ -126,7 +133,6 @@
                     <p>Question</p>
                     <!--palitan lang later haha-->
                     <input type="hidden" name="sponsorshipMonth" id="selected-month">
-                        <!-- TODO: add setMonth func -->
                         <button type="button" class="month-btn" value="January" onclick="setMonth(this)">Januart</button>
                         <button type="button" class="month-btn" value="February" onclick="setMonth(this)">February</button>
                         <button type="button" class="month-btn" value="March"   onclick="setMonth(this)">March</button>
@@ -143,7 +149,7 @@
 
                 <div class="step">
                     <p>GCASH QR CODE</p>
-                    <img src="images/gcashQR.png" style="width: 200px;"> <br>
+                    <img src="images/gcashQR.png" class="gcash-qr">
                     <p><strong>Minimum Sponsorship: ₱800.00</strong></p>
                     
                     <label for="amount">Total Amount Sent (PHP):</label>
@@ -152,17 +158,15 @@
                     <br><br>
 
                     <label for="image">Please attach your proof of payment here:</label>
-                    <input type="file" id="image" name="image" accept="image/*" required><br><br>
+                    <input type="file" id="proof-img" name="proof_img" accept="image/*" required><br><br>
                 </div>
+                </form>
 
-                <button>Submit</button>
-            </form>
-            <!-- 
             <div class="navigation-buttons">
-                <button id="sub">Previous</button>
-                <button id="nextBtn">Continue</button>
+                <button type="button" id="prevBtn">Previous</button>
+                <button type="button" id="nextBtn">Continue</button>
             </div>
-             -->
+            
         </div>
     </div>
 
@@ -194,42 +198,11 @@
         </p>
     </div>
     
-
+    <div id="footer"></div>
+    <script src = "js/session-check.js"></script>
     <script src="js/navbar.js"></script>
+    <script src="js/sponsor.js"></script> 
 
-    <!-- TODO: make this external -->
-    <script>
-        window.addEventListener('DOMContentLoaded', async () => {
-            const loadingScreen = document.getElementById('loading-screen');
-            const mainContent = document.getElementById('main-content');
-
-            try {
-
-                const response = await fetch('/api/user/auth-status'); 
-                const data = await response.json();
-
-                //if not logged in then di kita ang page itself
-                if (!data.isLoggedIn) {
-                    loadingScreen.style.display = 'none'; 
-                    // TODO: make this better idk haha
-                    alert('You must be logged in to view this page! Clicking OK will take you to login.');
-                    window.location.href = '/login.html'; 
-                }
-                else {
-
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none'; 
-                        mainContent.style.opacity = '1';      
-                    },300);
-                }
-            } catch (error) {
-                console.error('Auth check failed:', error);
-                loadingScreen.style.display = 'none';
-                alert('Server error.r.');
-            }
-        });
-    </script>
 
 </body>
 </html>
