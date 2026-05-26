@@ -19,9 +19,9 @@ DROP TABLE IF EXISTS `sponsorship`;
 DROP TABLE IF EXISTS `favorite`;
 DROP TABLE IF EXISTS `user`;
 
--- --------------------------------------------------------
 
--- Table structure for table user
+
+-- or table user
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(50) NOT NULL CHECK(`email` REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'), -- must be valid format
@@ -35,7 +35,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- Table structure for favorite 
+-- for favorite 
 CREATE TABLE `favorite` (
   `fav_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -47,13 +47,13 @@ CREATE TABLE `favorite` (
 
 
 
--- Table structure for sposorship
+-- or sposorship
 CREATE TABLE `sponsorship` (
   `sponsor_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `sponsor_type` enum('individual', 'group', 'business') NOT NULL,
-  `entity_name` varchar(100) DEFAULT NULL,        -- org Name/owner name
-  `contact_number` varchar(20) NOT NULL,          -- diff contact numbers
+  `entity_name` varchar(100) DEFAULT NULL,       
+  `contact_number` varchar(20) NOT NULL,          
   `fb_link_1` varchar(255) DEFAULT NULL,          -- Personal/Rep/Owner
   `fb_link_2` varchar(255) DEFAULT NULL,          -- Org Page/Biz Page
   `target_pets` varchar(255) NOT NULL,            -- arr of pets
