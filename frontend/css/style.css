@@ -119,7 +119,7 @@ main {
 
 .login-container {
     width: 400px;
-    max-height: 470px;
+    max-height: fit-content;
     background: #f3b7c9;
     margin: 100px auto; 
     padding: 35px;
