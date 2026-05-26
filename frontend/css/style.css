@@ -172,13 +172,14 @@ input {
     font-size: 14px;
     color: #555;
     transform: translateY(-85%);
-    user-select: none; /*so we cant highlight the toggle*/
+    user-select: none; 
 }
 
 
 .toggle-password:hover {
     color: #cb6d8a; 
 }
+
 
 button {
     width: 100%;
@@ -205,7 +206,8 @@ button:hover {
     color: #0077cc;
 }
 
-/* sponsorship page
+/*
+sponsorship page
 .step {
     display: none;
 }
@@ -230,9 +232,9 @@ button:hover {
 
     padding: 32px;
 }
-*/
 
-/* stepper 
+
+stepper
 .form-wrapper {
     width: 100%;
     max-width: 700px;
@@ -247,9 +249,9 @@ button:hover {
 
     position: relative;
 }
-*/
 
-/* circle 
+
+ circle  
 .circle {
     width: 45px;
     height: 45px;
@@ -268,9 +270,9 @@ button:hover {
 
     transition: 0.3s ease;
 }
-*/
 
-/* active step 
+
+ active step 
 .step-indicator.active .circle {
     background: black;
     border-color: black;
@@ -285,9 +287,9 @@ button:hover {
 
     transform: scale(1.1);
 }
-*/
 
-/* completed step 
+
+ completed step 
 .step-indicator.active .circle {
     background: black;
     border-color: black;
@@ -295,14 +297,15 @@ button:hover {
 
     transform: scale(1.1);
 }
-*/
 
-/* connecting line 
+
+ connecting line 
 .step-indicator.completed .circle {
     background: #28a745;
     border-color: #28a745;
     color: white;
 }
+
 
 input, select, textarea {
     width: 100%;
@@ -323,10 +326,9 @@ input, select, textarea {
 }
 */
 
-/* INPUT FOCUS 
-input:focus, select:focus, textarea:focus {
+input:focus, 
+select:focus, 
+textarea:focus {
     outline: none;
     border-color: black;
 }
-    */
-
