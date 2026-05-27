@@ -28,7 +28,7 @@ form.addEventListener('submit', async (e) => {
         const response = await fetch('/api/user/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},  // ensures backend receives a json format to handle
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ email: emailInput, password: passwordInput})
         });
 
         const data = await response.json();
@@ -49,7 +49,11 @@ form.addEventListener('submit', async (e) => {
         }
 
         // success redirect
-        window.location.href = '/home.html';
+        if (data.user && data.user.role === 'admin') {
+            window.location.href = '/admin.html';
+        } else {
+            window.location.href = '/home.html';
+        }
 
     } catch (err) {
         document.getElementById('form-error').textContent = 'Server error. Please try again.';

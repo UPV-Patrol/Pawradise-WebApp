@@ -75,10 +75,17 @@ exports.login = async (req, res) => {
         req.session.isLoggedIn = true;
         req.session.role = user.role;
 
-        //saving since redirection may go first before saving sessionh haha
-        req.session.save(()=> {
-            // res.redirect('/home.html'); 
-            return res.status(201).json({ success: true, redirect: '/home.html' });     // had to turn this into json instead of only redirecting
+        req.session.role = user.role; //for checkin if user or admin
+
+        //redirect base on rolw
+        req.session.save(() => {
+            res.status(200).json({
+                success: true,
+                user: {
+                    username: user.username,
+                    role: user.role
+                }
+            });
         });
     //TODO: might add something that stays in the login and highlight the one that is wrong
     } catch (err) {
