@@ -24,11 +24,13 @@ form.addEventListener('submit', async (e) => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
+    console.log("before fetch");
+
     try {
         const response = await fetch('/api/user/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},  // ensures backend receives a json format to handle
-            body: JSON.stringify({ email: emailInput, password: passwordInput})
+            body: JSON.stringify({ email, password })
         });
 
         const data = await response.json();
