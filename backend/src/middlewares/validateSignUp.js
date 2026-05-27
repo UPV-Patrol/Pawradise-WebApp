@@ -36,8 +36,7 @@ exports.validateSignup = async (req, res, next) => {
     //display req for pw
     if (!isStrongPassword) {
         return res.status(400).json({
-            message: "Password must have:"+
-                "\nMinimum length: 8 characters\nMinimum lowercase: 1\nMinimum uppercase: 1\nMinimum number: 1"
+            message: "Password  does not meet requirements."
         });
     }
 
