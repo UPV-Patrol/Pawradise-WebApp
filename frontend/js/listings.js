@@ -20,7 +20,7 @@ async function loadAnimals() {
             container.appendChild(card);
         });
 
-        attachCardClickListeners();
+        // attachCardClickListeners();
     } catch (error) {
         console.error('Error loading animals:', error);
         const container = document.getElementById('animal-container');
@@ -53,32 +53,17 @@ function createAnimalCard(animal) {
         </div>
         <div class="card-content">
             <div class="card-header">
-                <h2 class="card-name">${name} (${nickname})</h2>
+                <h2 class="card-name">${name}</h2>
             </div>
-
             <div class="basic-info">
                 <div class="info-item">
-                    <span class="info-label">TYPE</span>
                     <span class="info-value">${type}</span>
                 </div>
-                <div class="info-item">
-                    <span class="info-label">SEX</span>
-                    <span class="info-value">${sex}</span>
-                </div>
             </div>
-
-            <div class="card-location">
-                Usually seen at: <strong>${seen}</strong>
-            </div>
-
             <div class="traits-preview">
-                <strong>TRAITS</strong>
                 <p>${traitsPreview}</p>
             </div>
-
-            <button class="view-profile-btn" data-animal-id="${animal.id}">
-                Get to know me →
-            </button>
+            <a href="profile.html?id=${animal.id}" class="view-profile-btn">GET TO KNOW ME</a>
         </div>
     `;
 
@@ -86,24 +71,24 @@ function createAnimalCard(animal) {
 }
 
 /* attach click listeners to cards and buttons */
-function attachCardClickListeners() {
-    document.querySelectorAll('.animal-card').forEach(card => {
-        const button = card.querySelector('.view-profile-btn');
+// function attachCardClickListeners() {
+//     document.querySelectorAll('.animal-card').forEach(card => {
+//         const button = card.querySelector('.view-profile-btn');
         
-        button.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const animalId = button.dataset.animalId;
-            navigateToAnimalPage(animalId);
-        });
+//         button.addEventListener('click', (e) => {
+//             e.stopPropagation();
+//             const animalId = button.dataset.animalId;
+//             navigateToAnimalPage(animalId);
+//         });
 
-        // also allow clicking the card itself (excluding button)
-        card.addEventListener('click', (e) => {
-            if (e.target.closest('.view-profile-btn')) return;
-            const animalId = card.dataset.animalId;
-            navigateToAnimalPage(animalId);
-        });
-    });
-}
+//         // also allow clicking the card itself (excluding button)
+//         card.addEventListener('click', (e) => {
+//             if (e.target.closest('.view-profile-btn')) return;
+//             const animalId = card.dataset.animalId;
+//             navigateToAnimalPage(animalId);
+//         });
+//     });
+// }
 
 /* navigate to individual animal page using animalId */
 function navigateToAnimalPage(animalId) {
