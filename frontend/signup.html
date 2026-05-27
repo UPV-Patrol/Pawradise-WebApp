@@ -13,17 +13,27 @@
         <h1>UPV PAWtrol</h1>
         <p>Create an account now</p>
 
-        <form action="/api/user/signup" method="POST">
+        <!-- removed this from form bcs fetch handles the submission now: action="/api/user/signup" method="POST" -->
+        <form id="signup-form" novalidate>
             <label>Username</label>
             <input type="text" name="username" placeholder="Choose a unique username" required>
 
             <label>Email</label>
             <input type="email" name="email" placeholder="Enter your email" required>
+            <small class="error" id="email-error"></small>
 
             <label>Password</label>
             <div class="password-box">
                 <input type="password" name="password" id="password" placeholder="Create a password" required>
             </div>
+            <ul class="password-rules" id="password-rules">
+                <li id="length-rule">❌ At least 8 characters</li>
+                <li id="lower-rule">❌ One lowercase letter</li>
+                <li id="upper-rule">❌ One uppercase letter</li>
+                <li id="number-rule">❌ One number</li>
+                <li id="symbol-rule">❌ One special character (!@#$ etc)</li>
+            </ul>
+            <small class="error" id="password-error"></small>
 
             <label>Confirm Password</label>
             <div class="password-box">
@@ -31,7 +41,9 @@
                 
                 <span class="toggle-password" onclick="togglePassword()">Show</span>
             </div>
+            <small class="error" id="confirm-error"></small>
 
+            <div class="form-error" id="form-error"></div>
             <button type="submit">Sign Up</button>
         </form>
 
@@ -44,5 +56,6 @@
     <!-- show pw  -->
     <!-- TODO: maybe make it both have a show then specific lang dun sa isa or is this alr good? -->
     <script src="js/pass-toggle.js"></script>
+    <script src="js/signup.js"></script>
 </body>
 </html>

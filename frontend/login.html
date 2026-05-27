@@ -9,20 +9,28 @@
 </head>
 <body>
     <div id="navbar"></div>
+
+    <div class="page-message">
+        <div class="form-error" id="form-error"></div>
+    </div>
+    
     <div class="login-container">
         <h1>UPV PAWtrol</h1>
         <p>Login to your account</p>
 
-        <form id="login-form">
+        <form id="login-form" novalidate>
             <label for="email">Email</label>
             <input type="email" name= "email" id="email" placeholder="Enter your email" autocomplete="email" required>
+            <small class="error" id="email-error"></small>
 
             <label for="password">Password</label>
             <div class="password-box">
                 <input type="password" name="password" id="password" placeholder="Enter password" required>
                 <span class="toggle-password" onclick="togglePassword()">Show</span>
             </div>
+            <small class="error" id="password-error"></small>
 
+            <div class="form-error" id="form-error"></div>
             <button type="submit" >Login</button>
         </form>
 
@@ -31,40 +39,9 @@
         </div>
     </div>
     <div id="footer"></div>
+
     <script src="js/navbar.js"></script>
     <script src="js/pass-toggle.js"></script>
-    
-    <script>
-        document.getElementById('login-form').addEventListener('submit', async (event) => {
-            event.preventDefault(); 
-
-            const emailInput = document.getElementById('email').value;
-            const passwordInput = document.getElementById('password').value;
-
-            try {
-                const response = await fetch('/api/user/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: emailInput, password: passwordInput })
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    //redirection base on role
-                    if (result.user && result.user.role === 'admin') {
-                        window.location.href = '/admin.html'; 
-                    } else {
-                        window.location.href = '/home.html'; //for guest
-                    }
-                } else {
-                    alert(result.message || 'Login failed! Check your email or password.');
-                }
-            } catch (error) {
-                console.error('Login process submission error:', error);
-                alert('A network exception occurred.');
-            }
-        });
-    </script>
+    <script src="js/login.js"></script>
 </body>
 </html>

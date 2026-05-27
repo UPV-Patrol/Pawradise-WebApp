@@ -25,8 +25,8 @@ exports.signup = async (req, res) => {
             'INSERT INTO user (username, email, password) VALUES (?, ?, ?)', 
             [username, email, hashedPassword] 
         );
-        //direct back to home
-        res.redirect('/home.html'); 
+        // direct back to home res.redirect('/home.html'); 
+        return res.status(200).json({ success: true, redirect: '/home.html' }); // had to turn this into json instead of only redirecting
     } catch (err) {
         return res.status(500).json({ message: "Server error", error: err.message });
     }
