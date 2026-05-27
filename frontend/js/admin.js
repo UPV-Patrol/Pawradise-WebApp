@@ -133,7 +133,7 @@ function renderAnimalChart(petStats) {
             labels: Object.keys(petStats),
             datasets: [{
                 data: Object.values(petStats),
-                backgroundColor: ['#ff914d', '#ffc19a', '#ffb347', '#ff7f50', '#ffa07a']
+                backgroundColor: ['#FFC6FF', '#9CC1C0', '#FEF9E0', '#9BF6FF', '#FFF3AC']
             }]
         },
         options: {

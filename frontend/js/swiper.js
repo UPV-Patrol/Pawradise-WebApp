@@ -2,7 +2,10 @@
 
 const fbPosts = [
     "https://www.facebook.com/UPVprojectPAWradise/posts/pfbid0t8AYza7BGaQjfUBb2eUxdW8SV3X3aNUDzs8BgGSNQbtcQGhAVx66NhHjqX8eyim8l",
-    "https://www.facebook.com/UPVprojectPAWradise/posts/pfbid02efrjPHdJdmrA5SDDzr9yE2YZgGi2Lu9gXUENfPVEwskbKawDV1SpcgAjW82NL9Kql"
+    "https://www.facebook.com/UPVprojectPAWradise/posts/pfbid02efrjPHdJdmrA5SDDzr9yE2YZgGi2Lu9gXUENfPVEwskbKawDV1SpcgAjW82NL9Kql",
+    "https://www.facebook.com/UPVprojectPAWradise/posts/pfbid02W3nzDyVJRZBmoVm1MPreyFyH5qAinBupCyRRQadB4nLnhxaX2iEXdk8KqDgvCVWrl",
+    "https://www.facebook.com/UPVprojectPAWradise/posts/pfbid0LDwEnSYMnJHt4QPAzEhjizDGzNLtafdFVLiziRVfFwr6ifSbVSw7mY631F1QJJXol",
+    "https://www.facebook.com/UPVprojectPAWradise/posts/pfbid026AFC1xoi32b5MCD8upPR42ixJAwErcpVG2Z1NXydhVAKhrNRsRY8kHLaemdPNFxKl"
 ];
 
 const wrapper = document.getElementById("swiperWrapper");

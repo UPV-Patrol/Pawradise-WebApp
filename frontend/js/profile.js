@@ -60,71 +60,78 @@ async function loadAnimalProfile() {
     }
 }
 
-function getProfile(animal) {
+
+   function getProfile(animal) {
     const traits = animal.traitsAndPersonality
         ? animal.traitsAndPersonality.split(',').map(t => `<li>− ${t.trim()}</li>`).join('')
         : '<li>No traits listed</li>';
 
-    const neuteredChecked = animal['isNeutered/Spayed'] ? 'checked' : '';
+
+    const physicalChars = animal.physicalChars
+        ? animal.physicalChars.split(',').map(p => `<li>− ${p.trim()}</li>`).join('')
+        : '<li>No physical characteristics listed</li>';
+
+    const vaccinatedChecked = animal.isVaccinated ? 'checked' : '';
+    const neuteredChecked = animal['isNeutered/Spayed'] || animal.isNeuteredorSpayed ? 'checked' : '';
+    const dewormedChecked = animal.isDewormed ? 'checked' : '';
+
+    const dewormBrandHTML = animal.dewormBrand 
+        ? `<div class="check-med-3-note">Brand: ${animal.dewormBrand}</div>` 
+        : '';
 
     document.getElementById('animal-profile').innerHTML = `
         <div class="profile-top">
             <div class="profile-pic">
-                <img src="${animal.profilePic}" alt="${animal.name}" onerror="this.src='images/error.jpeg'">
+                <img src="${animal.profilePic}" alt="${animal.name}" onerror="this.onerror=null; this.src='images/error.jpg';">
             </div>
+            <br>
             <div class="profile-info">
                 <div class="profile-name-row">
                     <h1 class="profile-name">${animal.name}</h1>
                     <br>
                     <p class="profile-nickname">Also known as: ${animal.nickname}</p>
                 </div>
-                <p class="profile-meta"><strong>AGE:</strong> ${animal.age || 'Unknown'}</p>
                 <p class="profile-meta"><strong>SEX:</strong> ${animal.sex || 'Unknown'}</p>
                 <hr class="profile-divider">
+                <p class="trait-title"><strong>TRAITS AND PERSONALITY:</strong></p>
                 <ul class="profile-traits">${traits}</ul>
+
+                <p class="trait-title"><strong>PHYSICAL CHARACTERISTICS:</strong></p>
+                <ul class="profile-traits">${physicalChars} </ul>
             </div>
         </div>
 
-        <!-- Medical History -->
+        <!-- Medical History (Refactored to match your Check Med styles) -->
         <div class="profile-section">
             <div class="section-header">
                 <span class="section-title">MEDICAL HISTORY</span>
             </div>
             <div class="section-body">
-                <div class="medical-row">
-                    <input type="checkbox" ${animal.isVaccinated ? 'checked' : ''} disabled>
-                    <span class="medical-label">Vaccinated?</span>
+                
+                <div class="check-med-1-row">
+                    <input type="checkbox" ${vaccinatedChecked} disabled>
+                    <span class="check-med-1-label">Vaccinated?</span>
                 </div>
-                <div class="medical-row">
+
+                <div class="check-med-2-row">
                     <input type="checkbox" ${neuteredChecked} disabled>
-                    <span class="medical-label">Neutered/Spayed?</span>
+                    <span class="check-med-2-label">Spayed / Neutered?</span>
                 </div>
-                <div class="medical-row">
-                    <input type="checkbox" ${animal.isDewormed ? 'checked' : ''} disabled>
-                    <span class="medical-label">Dewormed?</span>
-                    <span class="medical-note">${animal.dewormBrand || ''}</span>
+
+                <!-- Medical 3: Is Dewormed & Deworm Brand -->
+                <div class="check-med-3-row-wrapper" style="margin-left: 100px; margin-bottom: 14px; text-align: left;">
+                    <div class="check-med-3-row" style="margin-left: 0; margin-bottom: 4px;">
+                        <input type="checkbox" ${dewormedChecked} disabled>
+                        <span class="check-med-3-label">Dewormed?</span>
+                    </div>
+                    ${dewormBrandHTML}
                 </div>
+
             </div> 
         </div>
 
-        <!-- Gallery -->
-        <div class="profile-section">
-            <div class="section-header">
-                <span class="section-title">GALLERY</span>
-            </div>
-            <div class="section-body">
-                <div class="gallery-grid">
-                    ${(animal.gallery || []).slice(0, 8).map(img => `
-                        <div class="gallery-item">
-                            <img src="${img}" alt="gallery photo" onerror="this.src='images/placeholder.jpeg'">
-                        </div>
-                    `).join('') || Array(8).fill('<div class="gallery-item gallery-placeholder"></div>').join('')}
-                </div>
-                <div class="gallery-btn-row">
-                    <button class="view-more-btn">View More</button>
-                </div>
-            </div>
-        </div>
+
+      
     `;
 }
 

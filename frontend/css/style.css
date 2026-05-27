@@ -1,8 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital@0;1&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik+Mono+One&family=Teachers:ital,wght@1,400..800&display=swap');
-/* * {
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-} */
 
 body {
     background-color: #fff7fa;
@@ -14,6 +10,9 @@ body {
 
 /* header and navbar */
 header, footer {
+    z-index: 999; 
+    
+    
     background-color: white;
     padding: 15px 40px;
     height: 100px;
@@ -36,7 +35,7 @@ header, footer {
 
 #logo {
     display: block;
-    width: 55px;
+    width: 90px;
     height: auto;
 }
 /* header */
@@ -48,11 +47,9 @@ header, footer {
 
 .logo-section h1 {
     margin-right: 30px;
-    font-size: 24px;
+    font-size: 30px;
     font-family: "Courier Prime", monospace;
-    font-weight: 400;
-    font-style: normal;
-
+    font-weight: 900;
     margin: 0; 
     line-height: 1.2; 
 }
@@ -62,7 +59,7 @@ header, footer {
     display: flex;
     gap: 25px;
     align-items: center;
-
+    font-size: 20px;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -91,11 +88,43 @@ footer {
     justify-content: center;
 }
 
+#user-greeting {
+    color:#df80a1;
+    font-weight: 900;
+}
+
+.footer-content {
+    text-align: center;
+    color: #555555;
+    font-size: 14px;
+}
+
+.footer-links {
+    margin: 10px 0;
+}
+
+.footer-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #cb6d8a;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-copy {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #888888;
+}
+
 #banner {
     width: 100vw;
     object-fit: cover;
-    border: 10px solid white;
-    z-index: 1;
+    display: block;      
+    position: relative;  
+    z-index: 1;      
 }
 
 main {
@@ -125,63 +154,95 @@ main {
 
 #lower-home section {
     position: relative;
-
     overflow: visible; 
 }
 
 /* stickers type shit igUESS */
 #paw1 {
-  position: absolute;
-  top: 15%;
-  left: 5%;
-  width: 200px;
-  height: auto;
-  transform: rotate(-25deg);
-  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    width: 200px;
+    height: auto;
+    transform: rotate(-25deg);
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
 
-  z-index: 1; 
-  pointer-events: none; 
-}
+    z-index: 1; 
+    pointer-events: none; 
+    }
 
-#paw2 {
-  position: absolute;
-  bottom: 10%;
-  right: 8%;
-  width: 187px;
-  height: auto;
-  transform: rotate(15deg);
-  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+    #paw2 {
+    position: absolute;
+    bottom: 10%;
+    right: 8%;
+    width: 187px;
+    height: auto;
+    transform: rotate(15deg);
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
 
-  z-index: 1; 
-  pointer-events: none; 
-}
+    z-index: 1; 
+    pointer-events: none; 
+    }
+
 
 #sponsor-shoutout {
     /* background-color: white; */
-background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%2379BBB9FF' stroke-width='11' stroke-dasharray='16 14' stroke-dashoffset='39' stroke-linecap='square'/%3e%3c/svg%3e");
-border-radius: 6px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%2379BBB9FF' stroke-width='11' stroke-dasharray='16 14' stroke-dashoffset='39' stroke-linecap='square'/%3e%3c/svg%3e");
+    border-radius: 6px;
     /* padding: -5px;  */
 
-    margin-left:10%;
-    margin-right:10%;
-
-    margin-top: 0;
+    margin-left:15%;
+    margin-right:15%;
+    margin-top: 50px;
 }
 
 #sponsor-shoutout ul{
     font-family: "Teachers", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 200;
-    font-style: italic;   
+    font-style: italic; 
     color: black;
+    font-size: 20px;  
 }
+
+.sponsor-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.sponsor-list li {
+    background: white;
+    border: 2px solid #79BBB9;
+    border-radius: 12px;
+
+    padding: 8px 14px;
+    font-family: "Teachers", sans-serif;
+    font-style: italic;
+
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+}
+
+.sponsor-list li:hover {
+    transform: scale(1.05);
+    background: #FFF1F5;
+}
+
+.sponsor-list li::before {
+    content: "🐾 ";
+}
+
 .inside-line {
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%2379BBB9FF' stroke-width='11' stroke-dasharray='16 14' stroke-dashoffset='39' stroke-linecap='square'/%3e%3c/svg%3e");
     border-radius: 9px;
     border-color: white;
     background-color: #FFFADF;
-    padding: 2px 30px;
-    padding-top: 4px;
+    padding: 5px 30px;
+    padding-top: 10px;
     text-align: center;
 }
 
@@ -272,6 +333,8 @@ border-radius: 6px;
 }
 
 
+
+
 @media (max-width: 768px) {
     iframe {
     width: 100%;
@@ -293,8 +356,8 @@ border-radius: 6px;
     font-family: "Rubik Mono One", monospace;
     font-weight: 400;
     font-style: normal;
-    color: #79BBB9;
-    text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
+    color: #CB6D8A;
+    text-shadow: -3px -3px 0 #4B4B4B, 3px -3px 0 #4B4B4B, -3px 3px 0 #4B4B4B, 3px 3px 0 #4B4B4B;
     font-size: 46px;
     margin-left: 20px;
 }
@@ -315,6 +378,15 @@ border-radius: 6px;
 
 /* login */
 
+h1 {
+    font-family: "Rubik Mono One", sans-serif;
+    font-size: 34px;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 .login-container {
     width: 400px;
     max-height: fit-content;
@@ -327,6 +399,9 @@ border-radius: 6px;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    
+    font-family: 'Courier New', Courier, monospace;
 }
 
 form {
@@ -338,9 +413,9 @@ form {
     margin-bottom: 8px;
 }
 
-.login-container  p {
+.login-container p {
     text-align: center;
-    color: gray;
+    color: black;
     margin-bottom: 25px;
 }
 
@@ -353,6 +428,7 @@ label {
 input {
     width: 100%;
     padding: 12px;
+    margin-right: 20px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 8px;

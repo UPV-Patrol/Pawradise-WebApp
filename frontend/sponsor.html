@@ -13,7 +13,7 @@
         <div class = "loading-spinner"></div>
     </div>
         
-    <div class="form-container" id="main-content">
+    <div class="form-wrapper" id="main-content">
         <div class="sponsorCard">
             <form id="sponsorForm" action="/api/sponsor/createSponsorship" method="POST" enctype="multipart/form-data">
 
@@ -99,10 +99,9 @@
 
                 <div class="step">
                     <h2>Pick Your Purr-fect Month to sPAWnsor!</h2>
-                    <p>Question</p>
                     <!--palitan lang later haha-->
                     <input type="hidden" name="sponsorshipMonth" id="selected-month">
-                        <button type="button" class="month-btn" value="January" onclick="setMonth(this)">Januart</button>
+                        <button type="button" class="month-btn" value="January" onclick="setMonth(this)">January</button>
                         <button type="button" class="month-btn" value="February" onclick="setMonth(this)">February</button>
                         <button type="button" class="month-btn" value="March"   onclick="setMonth(this)">March</button>
                         <button type="button" class="month-btn" value="April" onclick="setMonth(this)">April</button>
@@ -117,7 +116,7 @@
                 </div>
 
                 <div class="step">
-                    <p>GCASH QR CODE</p>
+                    <h2>GCASH QR CODE</h2>
                     <img src="images/gcashQR.png" class="gcash-qr">
                     <p><strong>Minimum Sponsorship: ₱800.00</strong></p>
                     
@@ -126,7 +125,7 @@
                     
                     <br><br>
 
-                    <label for="image">Please attach your proof of payment here:</label>
+                    <label for="proof-img">Please attach your proof of payment here:</label>
                     <input type="file" id="proof-img" name="proof_img" accept="image/*" required><br><br>
                 </div>
                 </form>

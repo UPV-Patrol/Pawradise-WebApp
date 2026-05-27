@@ -5,7 +5,6 @@
     margin-right: 150px;
 }
 
-
 .profile-container {
     width: 100%;
     padding: 40px 60px;
@@ -19,18 +18,17 @@
     gap: 32px;
     margin-bottom: 40px;
     align-items: flex-start;
-    margin-left: 200px;
-    margin-right: 200px;
-
+    /* margin-left: 200px;
+    margin-right: 200px; */
 
 }
 
 .profile-pic {
     width: 220px;
-    height: 260px;
+    height: 400px;
     flex-shrink: 0;
     overflow: hidden;
-    border-radius: 6px;
+    border-radius: 2px;
 }
 
 .profile-pic img {
@@ -41,7 +39,7 @@
 
 .profile-info {
     flex: 1;
-        font-family: "Teachers", sans-serif;
+    font-family: "Teachers", sans-serif;
     font-optical-sizing: auto;
     font-weight: 200;
 }
@@ -79,6 +77,12 @@
     margin: 14px 0;
 }
 
+.trait-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #FF877D;
+}
+
 .profile-traits {
     list-style: none;
     padding: 0;
@@ -89,7 +93,7 @@
 }
 
 .profile-section {
-     border: 2px solid black; 
+    border: 2px solid black; 
     border-radius: 8px;
     margin-bottom: 24px;
     overflow: hidden;
@@ -124,6 +128,17 @@
     align-items: left;
 }
 
+.profile-section .section-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 40px;
+    padding-left: 100px;
+    justify-content: flex-start;
+}
+
+
+
+
 /* ── Medical ── */
 .medical-row {
     display: flex;
@@ -142,20 +157,127 @@
     color: #222;
 }
 
-.medical-row input[type="checkbox"] {
-    width: auto;
+/* ── vaccinated ── */
+.check-med-1-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 100px;
+    margin-bottom: 14px;
+    font-size: 25px;
+    width: 20%;
+    justify-content: flex-start;
+}
+
+.check-med-1-label {
+    font-weight: 600;
+    color: #222;
+}
+
+
+.check-med-1-note {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+}
+
+/* ── neutered spayed── */
+.check-med-2-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 100px;
+    margin-bottom: 14px;
+    font-size: 25px;
+    width: 20%;
+    justify-content: flex-start;
+}
+
+.check-med-2-label {
+    font-weight: 600;
+    color: #222;
+}
+
+
+.check-med-2-note {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+}
+
+/* ── dewormed ── */
+.check-med-3-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 100px;
+    margin-bottom: 14px;
+    font-size: 25px;
+    width: 20%;
+    justify-content: flex-start;
+}
+
+.check-med-3-label {
+    font-weight: 600;
+    color: #222;
+}
+
+.check-med-3-note {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+}
+
+.check-med-1-row input[type="checkbox"],
+.check-med-2-row input[type="checkbox"],
+.check-med-3-row input[type="checkbox"] {
     padding: 0;
     margin-bottom: 0;
     border: none;
     border-radius: 0;
     flex-shrink: 0;
+
+    width: 24px !important;
+    height: 24px !important;
+    
+    margin: 0;
+    margin-top: 2px;
+    align-self: center;
+    
+    cursor: pointer;
+}
+
+/* Update rows to take up roughly half the space each */
+.check-med-1-row,
+.check-med-2-row,
+.check-med-3-row-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 45% !important;  
+    min-width: 200px;    
+    margin: 0 !important;    
 }
 
 
-.medical-note {
-    font-size: 12px;
+.check-med-3-row-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.check-med-3-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 !important;
+}
+
+.check-med-3-note {
+    font-size: 14px;
     color: #888;
     font-style: italic;
+    padding-left: 36px;      
 }
 
 
