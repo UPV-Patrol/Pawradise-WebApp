@@ -1,4 +1,12 @@
 /* DESCRIPTION: css for admin dashboard */
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital@0;1&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik+Mono+One&family=Teachers:ital,wght@1,400..800&display=swap');
+
+* {
+    font-family: "Courier Prime", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
 
 @keyframes spin {
     0%   { transform: rotate(0deg); }
@@ -23,7 +31,7 @@
     width: 50px;
     height: 50px;
     border: 5px solid #f3f3f3;
-    border-top: 5px solid #ff914d;
+    border-top: 5px solid FFC9D9;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -41,7 +49,7 @@
 
 .admin-container h1 {
     font-size: 2rem;
-    color: #ff914d;
+    color: #d67bc3;
     margin-bottom: 1.5rem;
 }
 
@@ -51,7 +59,7 @@
 
 .sheety-btn {
     display: inline-block;
-    background-color: #ff914d;
+    background-color: #cc6d8b;
     color: white;
     font-weight: bold;
     padding: 12px 24px;
@@ -62,7 +70,7 @@
 }
 
 .sheety-btn:hover {
-    background-color: #e07f42;
+    background-color: #fea7a0;
 }
 
 .year-filter-section {
@@ -152,7 +160,7 @@ table {
 }
 
 thead {
-    background-color: #ff914d;
+    background-color: #f0a6a1;
     color: white;
 }
 
@@ -215,8 +223,6 @@ tbody tr td[colspan] {
 }
 
 
-
-
 .status-actions {
     display: flex;
     gap: 8px;
@@ -236,25 +242,22 @@ tbody tr td[colspan] {
 
 
 .approve-btn {
-    background-color: #ff914d;
+    background-color:#7a9f90;
     color: white;
-    border: 2px solid #ff914d;
 }
 
 .approve-btn:hover {
-    background-color: #e07f42;
-    border-color: #e07f42;
+    background-color: #3eaf7d;
 }
 
 
 .deny-btn {
-    background-color: #ffffff;
-    color: #e07f42;
-    border: 2px solid #e07f42;
+    background-color: #762727;
+    color: white;
 }
 
 .deny-btn:hover {
-    background-color: #fff5f5;
+    background-color: #af3e3e;
 }
 
 
