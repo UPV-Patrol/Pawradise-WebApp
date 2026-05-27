@@ -56,11 +56,14 @@ app.use('/api/sponsor', sponsorRouter)
 // middleware: serve frontend files (non-dynamic) directly to browser; no need manual routes
 app.use(express.static(path.join(__dirname, "../../frontend")));
 
-//defines the landing page; doing localhost:3000/ directly leads to home
+
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../../frontend/home.html"));
-    // res.send("API is running");
 });
+
+//handless the links for admin
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
 
 
 

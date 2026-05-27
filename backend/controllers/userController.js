@@ -70,11 +70,9 @@ exports.login = async (req, res) => {
             return res.status(400).json({ message: "Incorrect password" });
         }
 
-        //saves the userId session.
+        //saves the userId session
         req.session.userId = existing[0].user_id;
         req.session.isLoggedIn = true;
-        req.session.role = user.role;
-
         req.session.role = user.role; //for checkin if user or admin
 
         //redirect base on rolw
@@ -91,4 +89,98 @@ exports.login = async (req, res) => {
     } catch (err) {
         return res.status(500).json({ message: "Server error", error: err.message });
     }
+};
+
+
+//get sponsorships belonging to the logged in user only
+exports.getMySponsorship = async (req, res) => {
+    try {
+        const [rows] = await db.query(
+            `SELECT 
+                sponsor_id,
+                sponsor_type,
+                target_pets,
+                sponsorship_month,
+                amount,
+                proof_img,
+                status,
+                created_at
+             FROM sponsorship 
+             WHERE user_id = ?
+             ORDER BY created_at DESC`,
+            [req.session.userId]
+        );
+
+        return res.status(200).json({ success: true, data: rows });
+
+    } catch (err) {
+        console.error("Get my sponsorships error:", err);
+        return res.status(500).json({ success: false, message: "Server error", error: err.message });
+    }
+};
+
+// TODO: get all favorited animals of the logged in user
+exports.getFavorites = async (req, res) => {
+    try {
+        const [rows] = await db.query(
+            'SELECT * FROM favorite WHERE user_id = ?',
+            [req.session.userId]
+        );
+        return res.status(200).json({ success: true, data: rows });
+    } catch (err) {
+        return res.status(500).json({ success: false, message: "Server error", error: err.message });
+    }
+};
+
+// TODO: add an animal to favorites
+exports.addFavorite = async (req, res) => {
+    const { animalId } = req.body;
+
+    try {
+        // check if alr favorited to avoid duplicates
+        const [existing] = await db.query(
+            'SELECT * FROM favorite WHERE user_id = ? AND animal_id = ?',
+            [req.session.userId, animalId]
+        );
+
+        if (existing.length > 0) {
+            return res.status(400).json({ success: false, message: "Already in favorites" });
+        }
+
+        await db.query(
+            'INSERT INTO favorite (user_id, animal_id) VALUES (?, ?)',
+            [req.session.userId, animalId]
+        );
+
+        return res.status(201).json({ success: true, message: "Added to favorites" });
+
+    } catch (err) {
+        return res.status(500).json({ success: false, message: "Server error", error: err.message });
+    }
+};
+
+// TODO: remove an animal from favorites AAAAAA
+exports.removeFavorite = async (req, res) => {
+    const { animalId } = req.params;
+
+    try {
+        await db.query(
+            'DELETE FROM favorite WHERE user_id = ? AND animal_id = ?',
+            [req.session.userId, animalId]
+        );
+        return res.status(200).json({ success: true, message: "Removed from favorites" });
+    } catch (err) {
+        return res.status(500).json({ success: false, message: "Server error", error: err.message });
+    }
+};
+
+exports.logout = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error("Logout session destruction error:", err);
+            return res.status(500).json({ success: false, message: "Could not log out." });
+        }
+        res.clearCookie('connect.sid'); 
+        return res.status(200).json({ success: true, message: "Logged out successfully" });
+    });
 };

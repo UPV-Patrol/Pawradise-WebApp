@@ -104,7 +104,7 @@ function getProfile(animal) {
                     <span class="medical-label">Dewormed?</span>
                     <span class="medical-note">${animal.dewormBrand || ''}</span>
                 </div>
-            </div> <!-- FIX: Properly closed unreturned tags from your original draft -->
+            </div> 
         </div>
 
         <!-- Gallery -->

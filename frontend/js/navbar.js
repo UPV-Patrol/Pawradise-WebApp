@@ -1,17 +1,17 @@
-fetch("navbar.html")
-//fetch("/navbar.html")
+// DESCRIPTION: loads navbar and footer, handles auth display and logout
+
+fetch("/navbar.html")
     .then(res => res.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;
-
         checkAuth();
     });
 
-fetch("footer.html")
-//fetch("/footer.html")
+fetch("/footer.html")
     .then(res => res.text())
     .then(data => {
-        document.getElementById("footer").innerHTML = data;
+        const footer = document.getElementById("footer");
+        if (footer) footer.innerHTML = data;
     });
 
 async function checkAuth() {
@@ -20,39 +20,58 @@ async function checkAuth() {
             credentials: 'include'
         });
 
+        // not logged= default navbar
         if (!response.ok) return;
 
         const data = await response.json();
+        if (!data.isLoggedIn) return;
 
-        const profileLink =
-            data.user.role === 'user'
-                ? 'user.html'
-                : 'admin.html';
+        const user = data.user;
 
-        if (data.isLoggedIn) {
-            document.getElementById('login-section').innerHTML = `
-            <span><a href="${profileLink}">Hi, ${data.user.username}</a></span>
-            <a href="#" onclick="logout()">LOGOUT</a>`;
+        // hide login/signup since user is logged in
+        const loginSection = document.getElementById('login-section');
+        if (loginSection) loginSection.style.display = 'none';
+
+        // show username 
+        const greetingItem = document.getElementById('user-greeting');
+        if (greetingItem) {
+            greetingItem.textContent = `Hi ${user.username.toUpperCase()}!`;
+            greetingItem.style.display = 'block';
+        }
+
+        // show logout btn
+        const logoutItem = document.getElementById('user-logout');
+        if (logoutItem) logoutItem.style.display = 'block';
+
+        //show admin dashboard        
+        if (user.role === 'admin') {
+            document.querySelectorAll('.admin-nav').forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.public-nav').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.user-nav').forEach(el => el.style.display = 'none');
+        } else {
+            // show: user dashboard, hide admin nav
+            document.querySelectorAll('.user-nav').forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.public-nav').forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.admin-nav').forEach(el => el.style.display = 'none');
         }
 
     } catch (err) {
-        console.error(err);
+        console.error('checkAuth error:', err);
     }
 }
 
 async function logout() {
-    const currentPage = window.location.pathname;
-
-    await fetch('/api/user/logout', {
-        method: 'POST',
-        credentials: 'include'
-    });
-
-    if (currentPage.includes("admin")) {
-        window.location.href = "home.html";
-    } else if (currentPage.includes("user")) {
-        window.location.href = "home.html";
-    } else {
-        window.location.reload();
+    try {
+        const res = await fetch('/api/user/logout', {
+            method: 'POST',
+            credentials: 'include'
+        });
+        const data = await res.json();
+        if (data.success) {
+            window.location.href = '/home.html';
+        }
+    } catch (err) {
+        console.error('Logout error:', err);
+        window.location.href = '/home.html';
     }
 }

@@ -3,15 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">    
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
 </head>
 <body>
     <div id="navbar"></div>
 
-    <p> hi admin </p>
+    <div id="loading-screen">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div id="main-content">
+        <div class="admin-container">
+            <h1>Sponsorship Dashboard</h1>
+
+            <div class="admin-actions">
+                <a href="https://api.sheety.co/75d3553f2e826a63182e3944fd7db05e/paWradiseAppApi/animals" 
+                   target="_blank" class="sheety-btn">
+                    Click to Update Animal Info
+                </a>
+            </div>
+
+            <div class="year-filter-section">
+                <span class="year-label">Year: <strong>2026</strong></span>
+                <select id="yearSelect" class="year-dropdown">
+                    <option value="2026" selected>2026</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                </select>
+            </div>
+
+            <div class="charts-container">
+                <div class="chart-box">
+                    <h2>Most Sponsored Animals</h2>
+                    <canvas id="animalChart"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h2>Most Sponsored Months</h2>
+                    <canvas id="monthChart"></canvas>
+                </div>
+            </div>
+
+            <div class="admin-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sponsor Name</th>
+                            <th>Type</th>
+                            <th>Target Pet</th>
+                            <th>Month</th>
+                            <th>Date Sent</th>
+                            <th>Amount Paid</th>
+                            <th>Proof of Payment</th>
+
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sponsorship-table-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <div id="footer"></div>
+    <script src="js/session-check.js"></script>
     <script src="js/navbar.js"></script>
+    <script src="js/admin.js"></script>
 </body>
 </html>
