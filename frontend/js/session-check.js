@@ -5,8 +5,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     function bootUserOut() {
         if (loadingScreen) loadingScreen.style.display = 'none'; 
-        alert('Must be logged in to view this page! Go back to login');
-        window.location.href = '/login.html';
+        if (mainContent) mainContent.style.display = 'none';
+        window.location.href = '/login.html?error=login_required';
     }
 
     try {

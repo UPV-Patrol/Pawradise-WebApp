@@ -1,3 +1,13 @@
+window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);         // a built-in JavaScript API used to easily read n manipulate the query string of a URL (after ? part)
+    const error = params.get('error');
+
+    if (error === 'login_required') {
+        document.getElementById('form-error').textContent = 'You must be logged in to access that page.';
+        document.getElementById('form-error').classList.add('active');
+    }
+});
+
 const form = document.getElementById('login-form');
 console.log(form);
 

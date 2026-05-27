@@ -431,6 +431,19 @@ button:hover {
     display: none; /* hidden by default */
 }
 
+/* for when sponsor is clicked by non-registered user */
+.page-message {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.page-message .form-error {
+    width: 400px;
+    display: none;
+}
+
 /* show form error dynamically */
 .form-error.active {
     display: block;
