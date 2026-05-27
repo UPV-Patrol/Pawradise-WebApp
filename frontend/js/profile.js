@@ -1,5 +1,39 @@
-const API_URL = 'https://api.sheety.co/85a55f8b29766adc4f5ce134fee89905/paWradiseAppApi/animals';
+const API_URL = 'https://api.sheety.co/75d3553f2e826a63182e3944fd7db05e/paWradiseAppApi/animals';
+// EDIT: optimized api calls, now it calls it every 1 hour instead of each time the user loads this page. IM NOT PAYING 9 DOLLARS
 
+async function getAnimalsData() {
+    const cacheKey = 'paWradiseAnimals';
+    const cacheTimeKey = 'paWradiseAnimalsTime';
+    const maxAge = 60 * 60 * 1000;
+
+    const cachedData = localStorage.getItem(cacheKey);
+    const cachedTime = localStorage.getItem(cacheTimeKey);
+    const now = Date.now();
+
+    if (cachedData && cachedTime && (now - cachedTime < maxAge)) {
+        console.log("Loading Animal List (from memory) ");
+        return JSON.parse(cachedData);
+    }
+
+    console.log("Fetching animal list from Sheety API");
+    try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+
+        if (data && data.animals) {
+            localStorage.setItem(cacheKey, JSON.stringify(data.animals));
+            localStorage.setItem(cacheTimeKey, now.toString());
+            return data.animals;
+        }
+        throw new Error("Invalid API response format");
+    } catch (error) {
+        console.error('Error fetching API, attempting expired cache rollback:', error);
+        // if error, return expired local data
+        return cachedData ? JSON.parse(cachedData) : [];
+    }
+}
+
+/* get specific animal id */
 async function loadAnimalProfile() {
     const params = new URLSearchParams(window.location.search);
     const animalId = params.get('id');
@@ -10,9 +44,9 @@ async function loadAnimalProfile() {
     }
 
     try {
-        const response = await fetch(API_URL);
-        const data = await response.json();
-        const animal = data.animals.find(a => String(a.id) === String(animalId));
+
+        const animals = await getAnimalsData();
+        const animal = animals.find(a => String(a.id) === String(animalId));
 
         if (!animal) {
             document.getElementById('animal-profile').innerHTML = '<p>Animal not found.</p>';
@@ -31,8 +65,9 @@ function getProfile(animal) {
         ? animal.traitsAndPersonality.split(',').map(t => `<li>− ${t.trim()}</li>`).join('')
         : '<li>No traits listed</li>';
 
-    document.getElementById('animal-profile').innerHTML = `
+    const neuteredChecked = animal['isNeutered/Spayed'] ? 'checked' : '';
 
+    document.getElementById('animal-profile').innerHTML = `
         <div class="profile-top">
             <div class="profile-pic">
                 <img src="${animal.profilePic}" alt="${animal.name}" onerror="this.src='images/error.jpeg'">
@@ -57,16 +92,19 @@ function getProfile(animal) {
             </div>
             <div class="section-body">
                 <div class="medical-row">
-                    <input type="checkbox" ${animal.vaccinated ? 'checked' : ''} disabled>
+                    <input type="checkbox" ${animal.isVaccinated ? 'checked' : ''} disabled>
                     <span class="medical-label">Vaccinated?</span>
-                    <span class="medical-note">${animal.vaccineName || ''} (${animal.vaccineDate || '2026/XX/XX'})</span>
                 </div>
                 <div class="medical-row">
-                    <input type="checkbox" ${animal.dewormed ? 'checked' : ''} disabled>
-                    <span class="medical-label">Dewormed?</span>
-                    <span class="medical-note">${animal.dewormName || ''} (${animal.dewormDate || '2026/XX/XX'})</span>
+                    <input type="checkbox" ${neuteredChecked} disabled>
+                    <span class="medical-label">Neutered/Spayed?</span>
                 </div>
-            </div>
+                <div class="medical-row">
+                    <input type="checkbox" ${animal.isDewormed ? 'checked' : ''} disabled>
+                    <span class="medical-label">Dewormed?</span>
+                    <span class="medical-note">${animal.dewormBrand || ''}</span>
+                </div>
+            </div> <!-- FIX: Properly closed unreturned tags from your original draft -->
         </div>
 
         <!-- Gallery -->
