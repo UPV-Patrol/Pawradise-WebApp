@@ -62,10 +62,14 @@ app.get("/", (req, res) => {
 });
 
 //handless the links for admin
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+// app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
+// app.use('/uploads', express.static(path.join(__dirname, './uploads')));
+// app.use('/uploads', express.static('/Users/Trisha/Desktop/Pawradise-WebApp/backend/uploads'));
 
+const uploadsPath = path.join(process.cwd(), 'uploads');
 
+app.use('/uploads', express.static(uploadsPath));
 
 //for test only: go to localhost:3000/test-db
 app.get("/test-db", async (req, res) => {

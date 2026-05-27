@@ -4,7 +4,7 @@ USE `upv_pawtrol`;
 -- CLEAN 
 SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE `sponsorship`;
-TRUNCATE TABLE `favorite`;
+
 
 
 DELETE FROM `user`; 
@@ -33,23 +33,6 @@ INSERT INTO `user` (`email`, `role`, `username`, `password`, `status`) VALUES
 ('troll_account@gmail.com', 'user', 'spammer99', '$2b$10$GDtVn7SJXUAyoh0z7bx2NuW9PuJRVIHWJavpte0b3bQctT5SKUS7O', 'banned');  -- pw: Capuccino3@
 
 
--- favorites
-INSERT INTO `favorite` (`user_id`, `animal_id`) VALUES 
-(2, 101), -- Juanito likes 101
-(2, 102), 
-(3, 101),
-(5, 101),
-(5, 103),
-(6, 102), 
-(7, 104), 
-(8, 101), 
-(8, 105), 
-(9, 102), 
-(10, 103),
-(11, 104),
-(12, 101),
-(13, 105),
-(14, 102);
 
 -- sponsor
 INSERT INTO `sponsorship` 

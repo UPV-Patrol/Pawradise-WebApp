@@ -35,16 +35,6 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- for favorite 
-CREATE TABLE `favorite` (
-  `fav_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `animal_id` int(11) NOT NULL,
-  PRIMARY KEY (`fav_id`),
-  CONSTRAINT `fk_fav_user` FOREIGN KEY (`user_id`) 
-    REFERENCES `user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 
 -- or sposorship
