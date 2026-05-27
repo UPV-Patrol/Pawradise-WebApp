@@ -4,18 +4,18 @@ const API_URL = 'https://api.sheety.co/75d3553f2e826a63182e3944fd7db05e/paWradis
 async function getAnimalsData() {
     const cacheKey = 'paWradiseAnimals';
     const cacheTimeKey = 'paWradiseAnimalsTime';
-    const maxAge = 60 * 60 * 1000; // 1 hour cache duration
+    const maxAge = 60 * 60 * 1000;
 
     const cachedData = localStorage.getItem(cacheKey);
     const cachedTime = localStorage.getItem(cacheTimeKey);
     const now = Date.now();
 
     if (cachedData && cachedTime && (now - cachedTime < maxAge)) {
-        console.log("Loading Animal List (from memory) 🧠");
+        console.log("Loading Animal List (from memory) ");
         return JSON.parse(cachedData);
     }
 
-    console.log("Fetching animal list from Sheety API 🌐");
+    console.log("Fetching animal list from Sheety API");
     try {
         const response = await fetch(API_URL);
         const data = await response.json();
