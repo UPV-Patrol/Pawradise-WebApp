@@ -13,7 +13,7 @@
         <h1>UPV PAWtrol</h1>
         <p>Login to your account</p>
 
-        <form action="/api/user/login" method= "POST">
+        <form id="login-form">
             <label for="email">Email</label>
             <input type="email" name= "email" id="email" placeholder="Enter your email" autocomplete="email" required>
 
@@ -33,5 +33,38 @@
     <div id="footer"></div>
     <script src="js/navbar.js"></script>
     <script src="js/pass-toggle.js"></script>
+    
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (event) => {
+            event.preventDefault(); 
+
+            const emailInput = document.getElementById('email').value;
+            const passwordInput = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/api/user/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: emailInput, password: passwordInput })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    //redirection base on role
+                    if (result.user && result.user.role === 'admin') {
+                        window.location.href = '/admin.html'; 
+                    } else {
+                        window.location.href = '/home.html'; //for guest
+                    }
+                } else {
+                    alert(result.message || 'Login failed! Check your email or password.');
+                }
+            } catch (error) {
+                console.error('Login process submission error:', error);
+                alert('A network exception occurred.');
+            }
+        });
+    </script>
 </body>
 </html>

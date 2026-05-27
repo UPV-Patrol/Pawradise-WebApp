@@ -3,15 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">    
+    <title>My Dashboard - UPV PAWtrol</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/user.css">
 </head>
 <body>
     <div id="navbar"></div>
 
-    <p> hi user </p>
+    <!-- loading screen while sesh check -->
+    <div id="loading-screen">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- main content hidden until auth passes -->
+    <div id="main-content">
+        <div class="user-container">
+
+            <!-- quick action buttons -->
+            <!-- <div class="quick-actions">
+                <a href="sponsor.html" class="action-btn">💝 Sponsor a Pet</a>
+                <a href="listings.html" class="action-btn">🐶 Browse Animals</a>
+            </div> -->
+
+            <!-- sponsorship history -->
+            <div class="dashboard-section">
+                <h2>My Sponsorships</h2>
+                <div class="sponsorship-list" id="sponsorship-list">
+                    <p class="loading-text">Loading your sponsorships...</p>
+                </div>
+            </div>
+
+            <!-- favorited animals -->
+            <div class="dashboard-section">
+                <h2>My Favorite Animals</h2>
+                <div class="favorites-grid" id="favorites-grid">
+                    <p class="loading-text">Loading your favorites...</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <div id="footer"></div>
+    <script src="js/session-check.js"></script>
     <script src="js/navbar.js"></script>
+    <script src="js/user.js"></script>
 </body>
 </html>

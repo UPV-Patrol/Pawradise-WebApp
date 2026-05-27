@@ -3,26 +3,28 @@
 const {Router} = require('express');
 const router = Router();
 
-const db = require('../config/db'); // db connect
+const db = require('../config/db');
 const userController = require('../../controllers/userController');
 const auth = require('../middlewares/auth');
 
-//--- DEFINE ENDPOINTS AND EXECUTE USER CONTROLLER FUNCTIONS ASSOCIATED  ---
-//middleware: for validation of email and pw
+//--- DEFINE ENDPOINTS AND EXECUTE USER CONTROLLER FUNCTIONS ASSOCIATED ---
 const { validateSignup } = require('../middlewares/validateSignUp');
 
-router.post('/signup', validateSignup, userController.signup)
+router.post('/signup', validateSignup, userController.signup);
 router.post('/login', userController.login); 
 
 router.get('/auth-status', auth, (req, res) => {
     res.json({ isLoggedIn: true, user: req.user });
 });
 
+router.post('/logout', userController.logout);
 
-router.post('/logout', (req, res) => {
-    req.session.destroy(() => {
-        res.json({ message: 'Logged out' });
-    });
-});
+// dashboard route
+router.get('/my-sponsorships', auth, userController.getMySponsorship);
 
-module.exports = router
+// fav routes
+router.get('/favorites', auth, userController.getFavorites);
+router.post('/favorites', auth, userController.addFavorite);
+router.delete('/favorites/:animalId', auth, userController.removeFavorite);
+
+module.exports = router;
