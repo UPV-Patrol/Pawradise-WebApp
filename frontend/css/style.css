@@ -89,7 +89,7 @@ footer {
 }
 
 #user-greeting {
-    color:#e18331;
+    color:#df80a1;
     font-weight: 900;
 }
 
@@ -378,6 +378,15 @@ main {
 
 /* login */
 
+h1 {
+    font-family: "Rubik Mono One", sans-serif;
+    font-size: 34px;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 .login-container {
     width: 400px;
     max-height: fit-content;
@@ -390,6 +399,9 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    
+    font-family: 'Courier New', Courier, monospace;
 }
 
 form {
@@ -401,9 +413,9 @@ form {
     margin-bottom: 8px;
 }
 
-.login-container  p {
+.login-container p {
     text-align: center;
-    color: gray;
+    color: black;
     margin-bottom: 25px;
 }
 
@@ -416,6 +428,7 @@ label {
 input {
     width: 100%;
     padding: 12px;
+    margin-right: 20px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 8px;

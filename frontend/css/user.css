@@ -109,10 +109,15 @@ h2 {
     padding: 1.5rem;
     margin-bottom: 2rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    
+    border: #CD6D8A solid 10px;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.15);
 }
 
 .dashboard-section h2 {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     color: #333;
     margin-bottom: 1rem;
 
@@ -201,7 +206,7 @@ h2 {
 
 .status-badge.status-pending {
     background-color: #c6c6c6;
-    color: #ff914d;
+    color: #ffffff;
     border-color: #ffe6d5;
 }
 

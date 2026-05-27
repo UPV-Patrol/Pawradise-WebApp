@@ -8,6 +8,7 @@
 }
 
 
+
 @keyframes spin {
     0%   { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -47,10 +48,11 @@
     padding: 0 2rem;
 }
 
-.admin-container h1 {
-    font-size: 2rem;
-    color: #d67bc3;
+.admin-container h1, .year-label {
+    font-size: 2.5rem;
+    color: #1f1d1e;
     margin-bottom: 1.5rem;
+    font-weight: 800;
 }
 
 .admin-actions {
@@ -80,11 +82,6 @@
     gap: 10px;
 }
 
-.year-label  {
-    color: #000000;
-    font-weight: 800;
-    font-size: 30px;
-}
 
 .year-dropdown {
     padding: 8px 12px;
@@ -137,6 +134,7 @@
 }
 
 
+
 .admin-table {
     background: white;
     border-radius: 20px;
@@ -159,10 +157,6 @@ table {
     font-size: 14px;
 }
 
-thead {
-    background-color: #f0a6a1;
-    color: white;
-}
 
 thead th {
     padding: 12px 16px;
@@ -190,14 +184,12 @@ tbody td {
 }
 
 tbody td a {
-    color: #ff914d;
+    color: #a891cd;
     font-weight: bold;
-    text-decoration: none;
-}
-
-tbody td a:hover {
     text-decoration: underline;
 }
+
+
 
 tbody tr td[colspan] {
     text-align: center;
@@ -208,17 +200,17 @@ tbody tr td[colspan] {
 
 
 .status-pending {
-    color: #f0a500;
+    color: #a6a6a6;
     font-weight: bold;
 }
 
 .status-verified {
-    color: #ff914d;
+    color: #bfe6ac;
     font-weight: bold;
 }
 
 .status-denied {
-    color: #dc3545;
+    color: #FBD4D4;
     font-weight: bold;
 }
 
@@ -247,12 +239,12 @@ tbody tr td[colspan] {
 }
 
 .approve-btn:hover {
-    background-color: #3eaf7d;
+    background-color: #62F2B4;
 }
 
 
 .deny-btn {
-    background-color: #762727;
+    background-color: #EE9B9B;
     color: white;
 }
 

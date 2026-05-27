@@ -3,10 +3,11 @@
 
 * {
     font-family: "Courier Prime", monospace;
-    
     font-weight: 400;
     font-style: normal;
-    padding-bottom: 10px;
+    box-sizing: border-box;
+
+
 }
 
 body {
@@ -16,9 +17,9 @@ body {
     background-color: #FFFADF; 
     background-size: auto;
 
-    
-
 }
+
+
 
 .step h2 {
     font-family: "Teachers", sans-serif;
@@ -65,7 +66,7 @@ body {
     -webkit-user-select: none;
     touch-action: manipulation;
 
-     margin: 0.375rem; 
+    margin: 0.375rem; 
 }
 
 .step button:hover {
@@ -214,15 +215,6 @@ label input[type="checkbox"] {
     margin-right: 16px; 
 }
 
-.sponsor-option.selected, 
-.month-btn.selected {
-    background-color: #ff914d !important; 
-    color: #ffffff !important;           
-    border-color: #ff914d !important;     
-    transform: scale(1.03);              
-    box-shadow: 0 4px 10px rgba(255, 145, 77, 0.3); 
-    transition: all 0.2s ease;
-}
 
 
 .submit-btn {
@@ -259,8 +251,6 @@ label input[type="checkbox"] {
 }
 
 .sponsor-info {
-    margin-left: 15%;
-    margin-right: 15%;
     padding: 50px;
     border-radius: 9px;
 
@@ -268,4 +258,9 @@ label input[type="checkbox"] {
     backdrop-filter: blur(1px);
 
     border-radius: 5px;
+}
+
+.sponsor-info, .sponsorCard, .form-wrapper {
+    max-width: 70%;             
+    margin: 0 auto;  
 }
