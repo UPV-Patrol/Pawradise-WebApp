@@ -10,6 +10,9 @@ body {
 
 /* header and navbar */
 header, footer {
+    z-index: 999; 
+    
+    
     background-color: white;
     padding: 15px 40px;
     height: 100px;
@@ -119,8 +122,9 @@ footer {
 #banner {
     width: 100vw;
     object-fit: cover;
-    border: 10px solid white;
-    z-index: 1;
+    display: block;      
+    position: relative;  
+    z-index: 1;      
 }
 
 main {
@@ -155,36 +159,36 @@ main {
 
 /* stickers type shit igUESS */
 #paw1 {
-  position: absolute;
-  top: 15%;
-  left: 5%;
-  width: 200px;
-  height: auto;
-  transform: rotate(-25deg);
-  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    width: 200px;
+    height: auto;
+    transform: rotate(-25deg);
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
 
-  z-index: 1; 
-  pointer-events: none; 
-}
+    z-index: 1; 
+    pointer-events: none; 
+    }
 
-#paw2 {
-  position: absolute;
-  bottom: 10%;
-  right: 8%;
-  width: 187px;
-  height: auto;
-  transform: rotate(15deg);
-  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+    #paw2 {
+    position: absolute;
+    bottom: 10%;
+    right: 8%;
+    width: 187px;
+    height: auto;
+    transform: rotate(15deg);
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
 
-  z-index: 1; 
-  pointer-events: none; 
-}
+    z-index: 1; 
+    pointer-events: none; 
+    }
 
 
 #sponsor-shoutout {
     /* background-color: white; */
-background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%2379BBB9FF' stroke-width='11' stroke-dasharray='16 14' stroke-dashoffset='39' stroke-linecap='square'/%3e%3c/svg%3e");
-border-radius: 6px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%2379BBB9FF' stroke-width='11' stroke-dasharray='16 14' stroke-dashoffset='39' stroke-linecap='square'/%3e%3c/svg%3e");
+    border-radius: 6px;
     /* padding: -5px;  */
 
     margin-left:15%;
@@ -329,6 +333,8 @@ border-radius: 6px;
 }
 
 
+
+
 @media (max-width: 768px) {
     iframe {
     width: 100%;
@@ -350,8 +356,8 @@ border-radius: 6px;
     font-family: "Rubik Mono One", monospace;
     font-weight: 400;
     font-style: normal;
-    color: #79BBB9;
-    text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
+    color: #CB6D8A;
+    text-shadow: -3px -3px 0 #4B4B4B, 3px -3px 0 #4B4B4B, -3px 3px 0 #4B4B4B, 3px 3px 0 #4B4B4B;
     font-size: 46px;
     margin-left: 20px;
 }

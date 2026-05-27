@@ -1,13 +1,13 @@
 // DESCRIPTION: loads navbar and footer, handles auth display and logout
 
-fetch("/navbar.html")
+fetch("./navbar.html")
     .then(res => res.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;
         checkAuth();
     });
 
-fetch("/footer.html")
+fetch("./footer.html")
     .then(res => res.text())
     .then(data => {
         const footer = document.getElementById("footer");
