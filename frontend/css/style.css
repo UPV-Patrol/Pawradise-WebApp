@@ -114,7 +114,6 @@ main {
     background-size: auto;
 
     
-
     overflow: hidden;
     display: block;
 
@@ -158,10 +157,10 @@ main {
 }
 
 #sponsor-shoutout {
-    background-color: white;
-    border: 5.6px dashed #79BBB9;
-    border-radius: 10px;
-    padding: -5px; 
+    /* background-color: white; */
+background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%2379BBB9FF' stroke-width='11' stroke-dasharray='16 14' stroke-dashoffset='39' stroke-linecap='square'/%3e%3c/svg%3e");
+border-radius: 6px;
+    /* padding: -5px;  */
 
     margin-left:10%;
     margin-right:10%;
@@ -177,8 +176,9 @@ main {
     color: black;
 }
 .inside-line {
-    border: 5px solid #FFFFFF;
-    border-radius: 8px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%2379BBB9FF' stroke-width='11' stroke-dasharray='16 14' stroke-dashoffset='39' stroke-linecap='square'/%3e%3c/svg%3e");
+    border-radius: 9px;
+    border-color: white;
     background-color: #FFFADF;
     padding: 2px 30px;
     padding-top: 4px;
@@ -285,17 +285,23 @@ main {
     font-optical-sizing: auto;
     font-weight: 400;
 
-    padding: 30px;
-    
+     padding: 0 100px;
+     padding-bottom: 100px;
 }
 
 #aboutus h2{
     font-family: "Rubik Mono One", monospace;
-    font-weight: 600;
+    font-weight: 400;
     font-style: normal;
     color: #79BBB9;
     text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
     font-size: 46px;
+    margin-left: 20px;
+}
+
+#aboutus hr {
+    border: none;
+    border-top: 8px dashed #d3ebea;
 }
 
 #aboutus p {
@@ -303,7 +309,7 @@ main {
     font-family: "Courier Prime", monospace;
     font-weight: 400;
     font-style: normal;
-
+    padding-bottom: 10px;
 }
 
 
