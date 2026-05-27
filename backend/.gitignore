@@ -1,0 +1,4 @@
+node_modules    
+# prevents uploading huge dependency folder
+.env            
+# keeps database passwords/API keys private
