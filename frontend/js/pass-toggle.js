@@ -8,7 +8,7 @@ function togglePassword() {
     ];
     const toggleText = document.querySelector(".toggle-password");
 
-    //show password if even one is clicked
+    //show password i
     passwordFields.forEach(field => {
         if (field) { 
             field.type = field.type === "password" ? "text" : "password";

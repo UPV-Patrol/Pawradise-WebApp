@@ -18,8 +18,11 @@ module.exports = async (req, res, next) => {
     }
     // attach user records to user property
     req.user = rows[0];
-    
-    //proceed
+    //fadmin guard
+    if (req.baseUrl.includes('/api/admin') && req.session.role !== 'admin') {
+        return res.status(403).json({ success: false, message: "Access Denied: Admins only." });
+    }
+
     next();
 
   } catch (error) {
