@@ -49,7 +49,7 @@
 
 .admin-container h1 {
     font-size: 2rem;
-    color: #d67bc3;
+    color: #ff4d50;
     margin-bottom: 1.5rem;
 }
 
@@ -160,7 +160,7 @@ table {
 }
 
 thead {
-    background-color: #f0a6a1;
+    background-color: #ff4d71;
     color: white;
 }
 
@@ -190,7 +190,7 @@ tbody td {
 }
 
 tbody td a {
-    color: #ff914d;
+    color: #c90bb3;
     font-weight: bold;
     text-decoration: none;
 }
