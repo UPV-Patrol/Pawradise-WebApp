@@ -14,6 +14,7 @@ const upload = require('../middlewares/multer');
 // DEFINE ENDPOINTS AND EXECUTE ASSOCIATED CONTROLLER FUNCTIONS
 router.post('/createSponsorship', auth, upload.single('proof_img'), sponsorController.createSponsorship);
 
-
+// fetch verified sponsors for homepage shoutout
+router.get('/approvedSponsors', sponsorController.getApprovedSponsors);
 
 module.exports = router;

@@ -77,3 +77,22 @@ exports.createSponsorship = async (req, res) => {
         res.status(500).send("Server Error");
     }
 };
+
+// to get approved sponsorships to display at homepage
+exports.getApprovedSponsors = async (req, res) => {
+    try {
+        const [rows] = await db.query(`
+            SELECT u.username
+            FROM sponsorship s
+            JOIN user u ON s.user_id = u.user_id
+            WHERE s.status = 'verified'
+            ORDER BY s.created_at DESC
+        `);
+        return res.status(200).json(rows);
+
+    } catch (err) {
+        console.error(err);
+
+        return res.status(500).json({ message: 'Failed to fetch sponsors' });
+    }
+};
