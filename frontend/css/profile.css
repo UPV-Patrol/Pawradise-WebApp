@@ -83,7 +83,7 @@
 }
 
 .profile-section {
-    /* border: 2px dashed #bbb; */
+     border: 2px solid black; 
     border-radius: 8px;
     margin-bottom: 24px;
     overflow: hidden;
