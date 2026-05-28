@@ -565,3 +565,7 @@ input:focus {
     border: 1px solid #cb6d8a;
     box-shadow: 0 0 0 3px rgba(203, 109, 138, 0.15);
 }
+
+.login-container input {
+    width: 94%;
+}
