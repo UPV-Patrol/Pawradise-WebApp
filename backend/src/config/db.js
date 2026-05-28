@@ -8,7 +8,7 @@ const pool = mysql.createPool ({
     database: process.env.DB_NAME,      // database: 'upv_pawtrol',  
     port: process.env.DB_PORT,
     ssl: {
-        rejectUnauthorized: true
+        rejectUnauthorized: false
     },
     waitForConnections: true,
     connectionLimit: 10,                // accomm only 10 people at the same time

@@ -7,6 +7,8 @@
 //  'use' is a method from express that accepts all requests: get, post
 //  ussing session makes the property persistent as the req
 
+require('dotenv').config();
+
 //IMPORTS
 // -- import third-party mod --
 const express = require("express"); 
@@ -89,6 +91,12 @@ app.get("/test-db", async (req, res) => {
             error: err.message 
         });
     }
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
 
 module.exports = app;
