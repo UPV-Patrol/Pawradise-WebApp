@@ -215,6 +215,16 @@ label input[type="checkbox"] {
     margin-right: 16px; 
 }
 
+.sponsor-option.selected, 
+.month-btn.selected {
+    background-color: #ff914d !important; 
+    color: #ffffff !important;           
+    border-color: #ff914d !important;     
+    transform: scale(1.03);              
+    box-shadow: 0 4px 10px rgba(255, 145, 77, 0.3); 
+    transition: all 0.2s ease;
+}
+
 
 
 .submit-btn {
