@@ -109,6 +109,19 @@ function validateStep() {
         }
     });
 
+    const privacyCheckbox = currentStepElement.querySelector("#privacyPolicy, .privacy-checkbox, input[type='checkbox'][required]");
+        
+        if (privacyCheckbox) {
+
+            privacyCheckbox.classList.remove("input-error");
+            
+            if (!privacyCheckbox.checked) {
+                valid = false;
+                privacyCheckbox.classList.add("input-error");
+                alert("accept the Privacy Policy to continue.");
+            }
+        }
+
     return valid;
 }
 
