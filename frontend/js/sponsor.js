@@ -57,7 +57,7 @@ function updateButtons() {
 
     // last step
     if (currentStep === steps.length - 1) {
-        nextBtn.textContent = "Submit Form rawr";
+        nextBtn.textContent = "Submit Form";
     } else {
         nextBtn.textContent = "Continue";
     }
