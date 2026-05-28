@@ -19,6 +19,10 @@ form.addEventListener('submit', async (e) => {
     document.getElementById('email-error').textContent = '';
     document.getElementById('password-error').textContent = '';
     document.getElementById('form-error').textContent = '';
+    document.getElementById('email-error').classList.remove('active');
+    document.getElementById('password-error').classList.remove('active');
+    document.getElementById('form-error').classList.remove('active');
+    
 
     // get new inputted values
     const email = document.getElementById('email').value;
